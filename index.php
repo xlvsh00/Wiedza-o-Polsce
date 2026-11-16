@@ -1,18 +1,3 @@
-
-<?php
-session_start();
-
-if (isset($_SESSION["numer"])) {
-    $_SESSION["numer"] = 0;
-    $_SESSION["punkty"] = 0;
-}
-
-
-
-
-
-?>
-
 <?php
 $pytania = [
     [
@@ -167,32 +152,49 @@ $pytania = [
         ],
         "poprawna" => "A"
     ],
-
-
-
-
-
-
     [
         "pytanie" => "Jak nazywał się niezależny związek zawodowy założony w 1980 roku?",
         "odpowiedzi" => ["A" => "Solidarność", "B" => "Ruch", "C" => "Jedność"],
         "poprawna" => "A"
     ]
 ];
+
+
+$punkty = 0;
+$sprawdzono = false;
+
+if (isset($_POST["sprawdz"])) {
+    $sprawdzono = true;
+    for ($p = 0; $p < count($pytania); $p++) {
+        if (isset($_POST["p$p"])) {
+            if ($_POST["p$p"] == $pytania[$p]["poprawna"]) {
+                $punkty++;
+            }
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Quiz o Polsce</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="quiz">
     <p>Witaj w quizie o Polsce! Czy uda Ci się zdobyć maksymalną liczbę punktów?</p>
     <p>Sprawdź swoją wiedzę o przełomowych momentach Polski!</p>
-    
+
+    <?php
+        if ($sprawdzono) {
+            echo "<p class='wynik'>Twój wynik: $punkty / " . count($pytania) . "</p>";
+        }
+    ?>
+
+    <form method="post">
     <?php
         for($p=0; $p< count($pytania); $p++){
             $pytanie = array_keys($pytania[$p])[0];
@@ -203,13 +205,15 @@ $pytania = [
 
             $poprawna = array_keys($pytania[$p])[2];
             $wartosc_poprawna = $pytania[$p][$poprawna];
-            
-            echo "<h3>$wartosc_pytanie</h3><hr>";
+
+            echo "<h3>" . ($p + 1) . ". $wartosc_pytanie</h3><hr>";
             foreach($wartosc_odpowiedzi as $key => $value){
-                echo "$key -> $value  ";
+                echo "<label><input type='radio' name='p$p' value='$key'> $key. $value</label>";
             }
-            echo "<mark>POPRAWNA: $wartosc_poprawna</mark>";
-        }  
+        }
     ?>
+        <button type="submit" name="sprawdz">Sprawdź wynik</button>
+    </form>
+</div>
 </body>
 </html>
