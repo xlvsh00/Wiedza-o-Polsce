@@ -157,9 +157,8 @@ $pytania = [
         "odpowiedzi" => ["A" => "Solidarność", "B" => "Ruch", "C" => "Jedność"],
         "poprawna" => "A"
     ]
-];
-
-
+    ];
+    
 $punkty = 0;
 $sprawdzono = false;
 
@@ -184,6 +183,8 @@ if (isset($_POST["sprawdz"])) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<img src="logo2.png" alt="logo2.png">
 <div class="quiz">
     <p>Witaj w quizie o Polsce! Czy uda Ci się zdobyć maksymalną liczbę punktów?</p>
     <p>Sprawdź swoją wiedzę o przełomowych momentach Polski!</p>
