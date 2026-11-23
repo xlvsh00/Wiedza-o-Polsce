@@ -5,8 +5,8 @@ body {
 }
 
 .quiz {
-    width: 450px;
-    margin: 60px auto;
+    width: 1700px;
+    margin: 60px;
     padding: 25px;
     background: #2a2040;
     border-radius: 10px;
@@ -16,11 +16,13 @@ h1 {
     text-align: center;
     color: #a070ff;
 }
+
 body {
     font-family: Arial, sans-serif;
-    background: #1a1425;
     color: #fff;
+
 }
+
 .wynik {
     padding: 10px;
     font-size: 20px;
@@ -45,7 +47,13 @@ button {
     font-size: 16px;
     color: #fff;
     background: #9900ff;
-    border: none;
     border-radius: 6px;
-    cursor: pointer;
 }
+
+img {
+
+    padding-left: 50px;
+    padding-top: 50px;
+}
+
+
